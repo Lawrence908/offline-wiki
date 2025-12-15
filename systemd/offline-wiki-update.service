@@ -1,0 +1,15 @@
+[Unit]
+Description=Offline Wiki - Update ZIM archives
+Wants=network-online.target
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/chris/services/offline-wiki
+EnvironmentFile=/home/chris/services/offline-wiki/.env
+ExecStart=/usr/bin/env bash scripts/update_zims.sh
+
+[Install]
+WantedBy=multi-user.target
+
+

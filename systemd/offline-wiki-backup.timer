@@ -1,0 +1,12 @@
+[Unit]
+Description=Offline Wiki - Daily backup
+
+[Timer]
+OnCalendar=*-*-* 03:45
+Persistent=true
+Unit=offline-wiki-backup.service
+
+[Install]
+WantedBy=timers.target
+
+

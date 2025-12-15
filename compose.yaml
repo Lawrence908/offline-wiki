@@ -1,0 +1,52 @@
+services:
+  kiwix-serve:
+    image: ghcr.io/kiwix/kiwix-serve:latest
+    container_name: offline-wiki
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "${KIWIX_PORT:-8282}:80"
+    volumes:
+      - "${KIWIX_DATA_DIR:-/mnt/storage/kiwix}:/data:ro"
+    entrypoint: ["/usr/local/bin/kiwix-serve"]
+    command:
+      - "-l"
+      - "/data/library.xml"
+      - "-p"
+      - "80"
+      - "-M"
+      - "-t"
+      - "8"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - web
+
+  updater:
+    image: alpine:3.20
+    container_name: offline-wiki-updater
+    restart: "no"
+    working_dir: /opt/offline-wiki
+    environment:
+      - TZ=${TZ}
+      - KIWIX_DATA_DIR=${KIWIX_DATA_DIR:-/mnt/storage/kiwix}
+      - KIWIX_ZIM_DIR=${KIWIX_ZIM_DIR:-/mnt/storage/kiwix/zims}
+    volumes:
+      - "${KIWIX_DATA_DIR:-/mnt/storage/kiwix}:/data"
+      - "./scripts:/opt/offline-wiki/scripts:ro"
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["sleep infinity"]
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+    name: homelab-web
+
+

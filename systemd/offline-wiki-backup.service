@@ -1,0 +1,15 @@
+[Unit]
+Description=Offline Wiki - Backup library and configuration
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/chris/services/offline-wiki
+EnvironmentFile=/home/chris/services/offline-wiki/.env
+ExecStart=/usr/bin/env bash scripts/backup.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
