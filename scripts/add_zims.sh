@@ -67,10 +67,24 @@ fi
 echo "Adding ${#ZIM_PATHS[@]} ZIM file(s) to library..."
 for zim_path in "${ZIM_PATHS[@]}"; do
   echo "  Adding ${zim_path}..."
-  kiwix-manage "${LIBRARY_PATH}" add "${zim_path}"
+  if ! kiwix-manage "${LIBRARY_PATH}" add "${zim_path}" 2>&1; then
+    echo "ERROR: Failed to add ${zim_path} to library"
+    exit 1
+  fi
 done
 
-echo "Library rebuild complete."
+if [ ! -f "${LIBRARY_PATH}" ]; then
+  echo "ERROR: Library file was not created at ${LIBRARY_PATH}"
+  exit 1
+fi
+
+# Verify library contains expected number of entries
+ENTRY_COUNT=$(grep -c "<book" "${LIBRARY_PATH}" || echo "0")
+if [ "${ENTRY_COUNT}" -ne "${#ZIM_PATHS[@]}" ]; then
+  echo "WARNING: Library contains ${ENTRY_COUNT} entries but expected ${#ZIM_PATHS[@]}"
+fi
+
+echo "Library rebuild complete. Added ${ENTRY_COUNT} ZIM file(s)."
 EOF
 
 echo "Attempting to signal kiwix-serve container to reload (SIGHUP)..."

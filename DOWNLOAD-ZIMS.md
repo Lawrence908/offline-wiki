@@ -78,3 +78,4 @@ wget -c "https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_maxi_2025-08.
 
 Choose based on your storage capacity and needs!
 
+

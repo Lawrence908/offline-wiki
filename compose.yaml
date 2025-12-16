@@ -18,12 +18,27 @@ services:
       - "-M"
       - "-t"
       - "8"
+      # Uncomment for verbose logging (useful for debugging):
+      # - "--verbose"
+    # # Resource limits (adjust based on your server capacity)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '4'
+    #       memory: 4G
+    #     reservations:
+    #       cpus: '1'
+    #       memory: 512M
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:80/ || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 30s
+    labels:
+      - "com.chrislawrence.service=offline-wiki"
+      - "com.chrislawrence.category=knowledge"
+      - "com.chrislawrence.description=Offline Wikipedia and other ZIM archives"
     networks:
       - web
 
