@@ -1,0 +1,34 @@
+# Kiwix ZIM Download List
+# Format: <filename> [category]
+# Lines starting with # are ignored
+# Browse available ZIMs at: https://download.kiwix.org/zim/
+
+# --- Wikiquote (quotes, smaller files) ---
+wikiquote_en_all_maxi_2026-01.zim wikiquote
+
+# --- Wikipedia EN: Topical / Smaller Variants ---
+# wikipedia_en_all_maxi_2025-08.zim   wikipedia
+
+# --- Wikitionary
+# wiktionary_en_all_nopic_2025-09.zim wikitionary
+
+# --- Gutenberg (books) ---
+gutenberg_en_all_2025-11.zim  gutenberg
+
+# --- Optional: Uncomment to add more ---
+wikiversity_en_all_maxi_2025-11.zim wikiversity
+3dprinting.stackexchange.com_en_all_2025-12.zim stack_exchange
+academia.stackexchange.com_en_all_2025-12.zim stack_exchange
+arduino.stackexchange.com_en_all_2025-12.zim stack_exchange
+communitybuilding.stackexchange.com_en_all_2025-12.zim stack_exchange
+diy.stackexchange.com_en_all_2025-12.zim stack_exchange
+earthscience.stackexchange.com_en_all_2025-12.zim stack_exchange
+engineering.stackexchange.com_en_all_2025-12.zim stack_exchange
+gardening.stackexchange.com_en_all_2025-12.zim stack_exchange
+sustainability.stackexchange.com_en_all_2025-12.zim stack_exchange
+stackoverflow.com_en_all_2023-11.zim stack_exchange
+armypubs_en_all_2024-12.zim zimit
+foss.cooking_en_all_2025-11.zim zimit
+# wikipedia_en_physics_nopic_2026-01.zim wikipedia
+# wikipedia_en_mathematics_nopic_2025-12.zim wikipedia
+# ted_ed_en_all_2025-11.zim ted

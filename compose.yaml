@@ -9,6 +9,7 @@ services:
       - "${KIWIX_PORT:-8282}:80"
     volumes:
       - "${KIWIX_DATA_DIR:-/mnt/storage/kiwix}:/data:ro"
+      - "/mnt/hermes/appdata/kiwix/zims:/data/zims:ro"
     entrypoint: ["/usr/local/bin/kiwix-serve"]
     command:
       - "-l"
@@ -53,6 +54,7 @@ services:
       - KIWIX_ZIM_DIR=${KIWIX_ZIM_DIR:-/mnt/storage/kiwix/zims}
     volumes:
       - "${KIWIX_DATA_DIR:-/mnt/storage/kiwix}:/data"
+      - "/mnt/hermes/appdata/kiwix/zims:/data/zims"
       - "./scripts:/opt/offline-wiki/scripts:ro"
     entrypoint: ["/bin/sh", "-c"]
     command: ["sleep infinity"]
